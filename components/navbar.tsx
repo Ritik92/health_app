@@ -1,57 +1,72 @@
-"use client"
+'use client'
+
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { User, Calendar, Pill, Clock, ClipboardList } from 'lucide-react';
 
 const Navbar = () => {
+  const navItems = [
+    { href: '/auth/signin', label: 'Log In', icon: User },
+    { href: '/doctor', label: 'Book Appointments', icon: Calendar },
+    { href: '/medicine/order', label: 'Order Medicine', icon: Pill },
+    { href: '/orderhistory', label: 'Order History', icon: Clock },
+    { href: '/myappointments', label: 'My Appointments', icon: ClipboardList },
+  ];
+
   return (
     <motion.nav
-      className='bg-white shadow-md sticky top-0 z-50 flex justify-between items-center p-4'
+      className="sticky top-0 z-50 bg-white backdrop-blur-md bg-opacity-80 border-b border-gray-100"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <div className='text-xl font-bold text-gray-800'>MyApp</div>
-      <div className='space-x-6'>
-        <Link href='/auth/signin'>
-          <motion.a
-            whileHover={{ scale: 1.1 }}
-            className='text-gray-700 hover:text-blue-600 transition-colors duration-200'
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex justify-between items-center h-16">
+          <motion.div
+            className="flex-shrink-0"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
           >
-            Log In
-          </motion.a>
-        </Link>
-        <Link href='/doctor'>
-          <motion.a
-            whileHover={{ scale: 1.1 }}
-            className='text-gray-700 hover:text-blue-600 transition-colors duration-200'
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
+              HealthHub
+            </span>
+          </motion.div>
+
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group relative px-3 py-2"
+                >
+                  <motion.div
+                    className="flex items-center space-x-2 text-gray-600 group-hover:text-blue-600 transition-colors duration-200"
+                    whileHover={{ y: -2 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span className="text-sm font-medium">{item.label}</span>
+                  </motion.div>
+                  <motion.div
+                    className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"
+                    whileHover={{ scaleX: 1 }}
+                  />
+                </Link>
+              );
+            })}
+          </div>
+
+          <motion.button
+            className="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none"
+            whileTap={{ scale: 0.95 }}
           >
-            Book Appointments
-          </motion.a>
-        </Link>
-        <Link href='/medicine/order'>
-          <motion.a
-            whileHover={{ scale: 1.1 }}
-            className='text-gray-700 hover:text-blue-600 transition-colors duration-200'
-          >
-            Order Medicine
-          </motion.a>
-        </Link>
-        <Link href='/orderhistory'>
-          <motion.a
-            whileHover={{ scale: 1.1 }}
-            className='text-gray-700 hover:text-blue-600 transition-colors duration-200'
-          >
-            Order History
-          </motion.a>
-        </Link>
-        <Link href='/myappointments'>
-          <motion.a
-            whileHover={{ scale: 1.1 }}
-            className='text-gray-700 hover:text-blue-600 transition-colors duration-200'
-          >
-            My Appointments
-          </motion.a>
-        </Link>
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </motion.button>
+        </div>
       </div>
     </motion.nav>
   );
