@@ -2,13 +2,13 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { authOptions } from "@/auth.config";
 
 const prisma = new PrismaClient();
 
 export async function GET(req) {
   try {
-    const session = await getServerSession(authOptions);
+    const session:any = await getServerSession(authOptions);
     // Get user session
     
     console.log("this is session",session)

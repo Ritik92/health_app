@@ -22,10 +22,11 @@ const DoctorAppointments = () => {
         setLoading(false);
       }
     };
-
+// @ts-ignore
     if (session?.user?.id) {
       fetchAppointments();
     }
+    // @ts-ignore
   }, [session?.user?.id]);
 
   if (!session) {

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]/route';
+import { authOptions } from '@/auth.config'
 
 // Best practice: Create a single PrismaClient instance and reuse it
 const prisma = new PrismaClient();
@@ -38,7 +38,7 @@ export async function GET() {
 export async function POST(req) {
   try {
     // Check authentication
-    const session = await getServerSession(authOptions);
+    const session:any = await getServerSession(authOptions);
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

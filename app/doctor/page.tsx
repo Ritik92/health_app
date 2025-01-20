@@ -48,7 +48,7 @@ const DoctorList = () => {
     try {
       await axios.post("/api/book-appointment", {
         doctorId: selectedDoctor.id,
-        date,
+        date,// @ts-ignore
         userId: session?.user?.id,
         type: appointmentType
       });
