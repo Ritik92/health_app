@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
-
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 export async function POST(req) {
   const { email, password, phone } = await req.json();
 
@@ -17,9 +18,9 @@ export async function POST(req) {
 
   // Save the user to your database (replace with your DB logic)
   // Example: Prisma
-  // await prisma.user.create({
-  //   data: { email, password: hashedPassword, phone },
-  // });
+  await prisma.user.create({
+    data: { email, password: hashedPassword, phone },
+  });
 
   return new Response("User created successfully!", { status: 201 });
 }

@@ -8,8 +8,8 @@ const Navbar = () => {
   const navItems = [
     { href: '/auth/signin', label: 'Log In', icon: User },
     { href: '/doctor', label: 'Book Appointments', icon: Calendar },
-    { href: '/medicine/order', label: 'Order Medicine', icon: Pill },
-    { href: '/orderhistory', label: 'Order History', icon: Clock },
+    { href: '/medicines', label: 'Order Medicine', icon: Pill },
+    { href: '/user/myorder', label: 'Order History', icon: Clock },
     { href: '/myappointments', label: 'My Appointments', icon: ClipboardList },
   ];
 

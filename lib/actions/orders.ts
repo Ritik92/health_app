@@ -47,7 +47,7 @@ export async function getOrders(): Promise<OrderWithDetails[]> {
   })
 }
 
-export async function updateOrderStatus(orderId: string, status: string) {
+export async function updateStatus(orderId: string, status: string) {
   return prisma.order.update({
     where: { id: orderId },
     data: { status },

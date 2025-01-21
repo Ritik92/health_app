@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { updateOrderStatus } from '@/lib/actions/orders';
+import {  updateStatus } from '@/lib/actions/orders';
 import { Toast } from '@/components/ui/toast';
 import { Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -31,7 +31,7 @@ export const OrdersClient = ({ initialOrders }) => {
   const handleStatusUpdate = async (orderId, newStatus) => {
     setUpdatingOrderId(orderId);
     try {
-      const updatedOrder = await updateOrderStatus(orderId, newStatus);
+      const updatedOrder = await updateStatus(orderId, newStatus);
       setOrders(orders.map(order => 
         order.id === orderId ? { ...order, status: newStatus } : order
       ));
