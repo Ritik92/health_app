@@ -93,7 +93,6 @@ const ScreenReader = () => {
     utterance.onend = () => setSpeaking(false);
     utterance.onerror = () => {
       setSpeaking(false);
-      alert('An error occurred while reading the content');
     };
 
     window.speechSynthesis.speak(utterance);
